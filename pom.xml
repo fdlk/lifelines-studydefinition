@@ -21,7 +21,7 @@
 				<configuration>
 					<verbose>true</verbose>
 					<extension>true</extension>
-					<packageName>nl.umcg.hl7.service.catalog</packageName>
+					<packageName>nl.umcg.hl7.service.studydefinition</packageName>
 					<vmArgs>
 						<vmArg>-Djavax.xml.accessExternalSchema=all</vmArg>
 					</vmArgs>
