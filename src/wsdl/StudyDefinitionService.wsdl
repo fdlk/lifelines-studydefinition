@@ -1,0 +1,399 @@
+<wsdl:definitions xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tns="http://hl7.umcg.nl" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="StudyDefinitionService" targetNamespace="http://hl7.umcg.nl">
+  <wsp:Policy wsu:Id="BasicHttpBinding_GenericLayerStudyDefinitionService_policy">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <sp:TransportBinding xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <wsp:Policy>
+            <sp:TransportToken>
+              <wsp:Policy>
+                <sp:HttpsToken RequireClientCertificate="false"></sp:HttpsToken>
+              </wsp:Policy>
+            </sp:TransportToken>
+            <sp:AlgorithmSuite>
+              <wsp:Policy>
+                <sp:Basic256></sp:Basic256>
+              </wsp:Policy>
+            </sp:AlgorithmSuite>
+            <sp:Layout>
+              <wsp:Policy>
+                <sp:Strict></sp:Strict>
+              </wsp:Policy>
+            </sp:Layout>
+          </wsp:Policy>
+        </sp:TransportBinding>
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://hl7.umcg.nl/Imports">
+      <xsd:import namespace="http://hl7.umcg.nl" schemaLocation="StudyDefinitionService_metadata2.xsd"></xsd:import>
+      <xsd:import namespace="urn:hl7-org:v3" schemaLocation="StudyDefinitionService_EMeasure.xsd"></xsd:import>
+      <xsd:import namespace="http://schemas.microsoft.com/2003/10/Serialization/" schemaLocation="StudyDefinitionService_metadata1.xsd"></xsd:import>
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="GenericLayerStudyDefinitionService_GetVersion_InputMessage">
+    <wsdl:part element="tns:GetVersion" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="GenericLayerStudyDefinitionService_GetVersion_OutputMessage">
+    <wsdl:part element="tns:GetVersionResponse" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="MessageWithEmail">
+    <wsdl:part element="tns:email" name="email"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="CreateResponse">
+    <wsdl:part element="tns:CreateResponse" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="GenericLayerStudyDefinitionService_Create_FAULT_FaultMessage">
+    <wsdl:part element="tns:FAULT" name="detail"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="GenericLayerStudyDefinitionService_Submit_InputMessage">
+    <wsdl:part element="tns:Submit" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="GenericLayerStudyDefinitionService_Submit_OutputMessage">
+    <wsdl:part element="tns:SubmitResponse" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="GenericLayerStudyDefinitionService_Submit_FAULT_FaultMessage">
+    <wsdl:part element="tns:FAULT" name="detail"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="GetByEmailResponse">
+    <wsdl:part element="tns:GetByEmailResponse" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="GenericLayerStudyDefinitionService_GetByEmail_FAULT_FaultMessage">
+    <wsdl:part element="tns:FAULT" name="detail"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="Revise">
+    <wsdl:part xmlns:q1="urn:hl7-org:v3" element="q1:HL7Container" name="HL7Container"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="ReviseResponse">
+    <wsdl:part element="tns:ReviseResponse" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="GenericLayerStudyDefinitionService_Revise_FAULT_FaultMessage">
+    <wsdl:part element="tns:FAULT" name="detail"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="GetDraft">
+    <wsdl:part element="tns:email" name="email"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="GetDraftResponse">
+    <wsdl:part element="tns:GetDraftResponse" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="GenericLayerStudyDefinitionService_GetDraft_FAULT_FaultMessage">
+    <wsdl:part element="tns:FAULT" name="detail"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="GetSubmitted">
+    <wsdl:part element="tns:email" name="email"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="GetSubmittedResponse">
+    <wsdl:part element="tns:GetSubmittedResponse" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="GenericLayerStudyDefinitionService_GetSubmitted_FAULT_FaultMessage">
+    <wsdl:part element="tns:FAULT" name="detail"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="GenericLayerStudyDefinitionService_Approve_InputMessage">
+    <wsdl:part element="tns:Approve" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="GenericLayerStudyDefinitionService_Approve_OutputMessage">
+    <wsdl:part element="tns:ApproveResponse" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="GenericLayerStudyDefinitionService_Approve_FAULT_FaultMessage">
+    <wsdl:part element="tns:FAULT" name="detail"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="GetApproved">
+    <wsdl:part element="tns:email" name="email"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="GetApprovedResponse">
+    <wsdl:part element="tns:GetApprovedResponse" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="GenericLayerStudyDefinitionService_GetApproved_FAULT_FaultMessage">
+    <wsdl:part element="tns:FAULT" name="detail"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="GenericLayerStudyDefinitionService_Withdraw_InputMessage">
+    <wsdl:part element="tns:Withdraw" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="GenericLayerStudyDefinitionService_Withdraw_OutputMessage">
+    <wsdl:part element="tns:WithdrawResponse" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="GenericLayerStudyDefinitionService_Withdraw_FAULT_FaultMessage">
+    <wsdl:part element="tns:FAULT" name="detail"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="GenericLayerStudyDefinitionService_Suspend_InputMessage">
+    <wsdl:part element="tns:Suspend" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="GenericLayerStudyDefinitionService_Suspend_OutputMessage">
+    <wsdl:part element="tns:SuspendResponse" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="GenericLayerStudyDefinitionService_Suspend_FAULT_FaultMessage">
+    <wsdl:part element="tns:FAULT" name="detail"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="GenericLayerStudyDefinitionService_Resume_InputMessage">
+    <wsdl:part element="tns:Resume" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="GenericLayerStudyDefinitionService_Resume_OutputMessage">
+    <wsdl:part element="tns:ResumeResponse" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="GenericLayerStudyDefinitionService_Resume_FAULT_FaultMessage">
+    <wsdl:part element="tns:FAULT" name="detail"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="GenericLayerStudyDefinitionService_AddReview_InputMessage">
+    <wsdl:part element="tns:AddReview" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="GenericLayerStudyDefinitionService_AddReview_OutputMessage">
+    <wsdl:part element="tns:AddReviewResponse" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="GenericLayerStudyDefinitionService_AddReview_FAULT_FaultMessage">
+    <wsdl:part element="tns:FAULT" name="detail"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="GetById">
+    <wsdl:part element="tns:GetById" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="GetByIdResponse">
+    <wsdl:part element="tns:GetByIdResponse" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="GenericLayerStudyDefinitionService_GetById_FAULT_FaultMessage">
+    <wsdl:part element="tns:FAULT" name="detail"></wsdl:part>
+  </wsdl:message>
+  <wsdl:portType name="GenericLayerStudyDefinitionService">
+    <wsdl:operation name="GetVersion">
+      <wsdl:input message="tns:GenericLayerStudyDefinitionService_GetVersion_InputMessage" wsaw:Action="http://hl7.umcg.nl/GenericLayerStudyDefinitionService/GetVersion"></wsdl:input>
+      <wsdl:output message="tns:GenericLayerStudyDefinitionService_GetVersion_OutputMessage" wsaw:Action="http://hl7.umcg.nl/GenericLayerStudyDefinitionService/GetVersionResponse"></wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Create">
+      <wsdl:input message="tns:MessageWithEmail" name="MessageWithEmail" wsaw:Action="http://hl7.umcg.nl/GenericLayerStudyDefinitionService/Create"></wsdl:input>
+      <wsdl:output message="tns:CreateResponse" name="CreateResponse" wsaw:Action="http://hl7.umcg.nl/GenericLayerStudyDefinitionService/CreateResponse"></wsdl:output>
+      <wsdl:fault message="tns:GenericLayerStudyDefinitionService_Create_FAULT_FaultMessage" name="FAULT" wsaw:Action="http://hl7.umcg.nl/GenericLayerStudyDefinitionService/CreateFAULT"></wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="Submit">
+      <wsdl:input message="tns:GenericLayerStudyDefinitionService_Submit_InputMessage" wsaw:Action="http://hl7.umcg.nl/GenericLayerStudyDefinitionService/Submit"></wsdl:input>
+      <wsdl:output message="tns:GenericLayerStudyDefinitionService_Submit_OutputMessage" wsaw:Action="http://hl7.umcg.nl/GenericLayerStudyDefinitionService/SubmitResponse"></wsdl:output>
+      <wsdl:fault message="tns:GenericLayerStudyDefinitionService_Submit_FAULT_FaultMessage" name="FAULT" wsaw:Action="http://hl7.umcg.nl/GenericLayerStudyDefinitionService/SubmitFAULT"></wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="GetByEmail">
+      <wsdl:input message="tns:MessageWithEmail" name="MessageWithEmail" wsaw:Action="http://hl7.umcg.nl/GenericLayerStudyDefinitionService/GetByEmail"></wsdl:input>
+      <wsdl:output message="tns:GetByEmailResponse" name="GetByEmailResponse" wsaw:Action="http://hl7.umcg.nl/GenericLayerStudyDefinitionService/GetByEmailResponse"></wsdl:output>
+      <wsdl:fault message="tns:GenericLayerStudyDefinitionService_GetByEmail_FAULT_FaultMessage" name="FAULT" wsaw:Action="http://hl7.umcg.nl/GenericLayerStudyDefinitionService/GetByEmailFAULT"></wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="Revise">
+      <wsdl:input message="tns:Revise" name="Revise" wsaw:Action="http://hl7.umcg.nl/GenericLayerStudyDefinitionService/Revise"></wsdl:input>
+      <wsdl:output message="tns:ReviseResponse" name="ReviseResponse" wsaw:Action="http://hl7.umcg.nl/GenericLayerStudyDefinitionService/ReviseResponse"></wsdl:output>
+      <wsdl:fault message="tns:GenericLayerStudyDefinitionService_Revise_FAULT_FaultMessage" name="FAULT" wsaw:Action="http://hl7.umcg.nl/GenericLayerStudyDefinitionService/ReviseFAULT"></wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="GetDraft">
+      <wsdl:input message="tns:GetDraft" name="GetDraft" wsaw:Action="http://hl7.umcg.nl/GenericLayerStudyDefinitionService/GetDraft"></wsdl:input>
+      <wsdl:output message="tns:GetDraftResponse" name="GetDraftResponse" wsaw:Action="http://hl7.umcg.nl/GenericLayerStudyDefinitionService/GetDraftResponse"></wsdl:output>
+      <wsdl:fault message="tns:GenericLayerStudyDefinitionService_GetDraft_FAULT_FaultMessage" name="FAULT" wsaw:Action="http://hl7.umcg.nl/GenericLayerStudyDefinitionService/GetDraftFAULT"></wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="GetSubmitted">
+      <wsdl:input message="tns:GetSubmitted" name="GetSubmitted" wsaw:Action="http://hl7.umcg.nl/GenericLayerStudyDefinitionService/GetSubmitted"></wsdl:input>
+      <wsdl:output message="tns:GetSubmittedResponse" name="GetSubmittedResponse" wsaw:Action="http://hl7.umcg.nl/GenericLayerStudyDefinitionService/GetSubmittedResponse"></wsdl:output>
+      <wsdl:fault message="tns:GenericLayerStudyDefinitionService_GetSubmitted_FAULT_FaultMessage" name="FAULT" wsaw:Action="http://hl7.umcg.nl/GenericLayerStudyDefinitionService/GetSubmittedFAULT"></wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="Approve">
+      <wsdl:input message="tns:GenericLayerStudyDefinitionService_Approve_InputMessage" wsaw:Action="http://hl7.umcg.nl/GenericLayerStudyDefinitionService/Approve"></wsdl:input>
+      <wsdl:output message="tns:GenericLayerStudyDefinitionService_Approve_OutputMessage" wsaw:Action="http://hl7.umcg.nl/GenericLayerStudyDefinitionService/ApproveResponse"></wsdl:output>
+      <wsdl:fault message="tns:GenericLayerStudyDefinitionService_Approve_FAULT_FaultMessage" name="FAULT" wsaw:Action="http://hl7.umcg.nl/GenericLayerStudyDefinitionService/ApproveFAULT"></wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="GetApproved">
+      <wsdl:input message="tns:GetApproved" name="GetApproved" wsaw:Action="http://hl7.umcg.nl/GenericLayerStudyDefinitionService/GetApproved"></wsdl:input>
+      <wsdl:output message="tns:GetApprovedResponse" name="GetApprovedResponse" wsaw:Action="http://hl7.umcg.nl/GenericLayerStudyDefinitionService/GetApprovedResponse"></wsdl:output>
+      <wsdl:fault message="tns:GenericLayerStudyDefinitionService_GetApproved_FAULT_FaultMessage" name="FAULT" wsaw:Action="http://hl7.umcg.nl/GenericLayerStudyDefinitionService/GetApprovedFAULT"></wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="Withdraw">
+      <wsdl:input message="tns:GenericLayerStudyDefinitionService_Withdraw_InputMessage" wsaw:Action="http://hl7.umcg.nl/GenericLayerStudyDefinitionService/Withdraw"></wsdl:input>
+      <wsdl:output message="tns:GenericLayerStudyDefinitionService_Withdraw_OutputMessage" wsaw:Action="http://hl7.umcg.nl/GenericLayerStudyDefinitionService/WithdrawResponse"></wsdl:output>
+      <wsdl:fault message="tns:GenericLayerStudyDefinitionService_Withdraw_FAULT_FaultMessage" name="FAULT" wsaw:Action="http://hl7.umcg.nl/GenericLayerStudyDefinitionService/WithdrawFAULT"></wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="Suspend">
+      <wsdl:input message="tns:GenericLayerStudyDefinitionService_Suspend_InputMessage" wsaw:Action="http://hl7.umcg.nl/GenericLayerStudyDefinitionService/Suspend"></wsdl:input>
+      <wsdl:output message="tns:GenericLayerStudyDefinitionService_Suspend_OutputMessage" wsaw:Action="http://hl7.umcg.nl/GenericLayerStudyDefinitionService/SuspendResponse"></wsdl:output>
+      <wsdl:fault message="tns:GenericLayerStudyDefinitionService_Suspend_FAULT_FaultMessage" name="FAULT" wsaw:Action="http://hl7.umcg.nl/GenericLayerStudyDefinitionService/SuspendFAULT"></wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="Resume">
+      <wsdl:input message="tns:GenericLayerStudyDefinitionService_Resume_InputMessage" wsaw:Action="http://hl7.umcg.nl/GenericLayerStudyDefinitionService/Resume"></wsdl:input>
+      <wsdl:output message="tns:GenericLayerStudyDefinitionService_Resume_OutputMessage" wsaw:Action="http://hl7.umcg.nl/GenericLayerStudyDefinitionService/ResumeResponse"></wsdl:output>
+      <wsdl:fault message="tns:GenericLayerStudyDefinitionService_Resume_FAULT_FaultMessage" name="FAULT" wsaw:Action="http://hl7.umcg.nl/GenericLayerStudyDefinitionService/ResumeFAULT"></wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="AddReview">
+      <wsdl:input message="tns:GenericLayerStudyDefinitionService_AddReview_InputMessage" wsaw:Action="http://hl7.umcg.nl/GenericLayerStudyDefinitionService/AddReview"></wsdl:input>
+      <wsdl:output message="tns:GenericLayerStudyDefinitionService_AddReview_OutputMessage" wsaw:Action="http://hl7.umcg.nl/GenericLayerStudyDefinitionService/AddReviewResponse"></wsdl:output>
+      <wsdl:fault message="tns:GenericLayerStudyDefinitionService_AddReview_FAULT_FaultMessage" name="FAULT" wsaw:Action="http://hl7.umcg.nl/GenericLayerStudyDefinitionService/AddReviewFAULT"></wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="GetById">
+      <wsdl:input message="tns:GetById" name="GetById" wsaw:Action="http://hl7.umcg.nl/GenericLayerStudyDefinitionService/GetById"></wsdl:input>
+      <wsdl:output message="tns:GetByIdResponse" name="GetByIdResponse" wsaw:Action="http://hl7.umcg.nl/GenericLayerStudyDefinitionService/GetByIdResponse"></wsdl:output>
+      <wsdl:fault message="tns:GenericLayerStudyDefinitionService_GetById_FAULT_FaultMessage" name="FAULT" wsaw:Action="http://hl7.umcg.nl/GenericLayerStudyDefinitionService/GetByIdFAULT"></wsdl:fault>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="BasicHttpBinding_GenericLayerStudyDefinitionService" type="tns:GenericLayerStudyDefinitionService">
+    <wsp:PolicyReference URI="#BasicHttpBinding_GenericLayerStudyDefinitionService_policy"></wsp:PolicyReference>
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http"></soap:binding>
+    <wsdl:operation name="GetVersion">
+      <soap:operation soapAction="http://hl7.umcg.nl/GenericLayerStudyDefinitionService/GetVersion" style="document"></soap:operation>
+      <wsdl:input>
+        <soap:body use="literal"></soap:body>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"></soap:body>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Create">
+      <soap:operation soapAction="http://hl7.umcg.nl/GenericLayerStudyDefinitionService/Create" style="document"></soap:operation>
+      <wsdl:input name="MessageWithEmail">
+        <soap:body use="literal"></soap:body>
+      </wsdl:input>
+      <wsdl:output name="CreateResponse">
+        <soap:body use="literal"></soap:body>
+      </wsdl:output>
+      <wsdl:fault name="FAULT">
+        <soap:fault name="FAULT" use="literal"></soap:fault>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="Submit">
+      <soap:operation soapAction="http://hl7.umcg.nl/GenericLayerStudyDefinitionService/Submit" style="document"></soap:operation>
+      <wsdl:input>
+        <soap:body use="literal"></soap:body>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"></soap:body>
+      </wsdl:output>
+      <wsdl:fault name="FAULT">
+        <soap:fault name="FAULT" use="literal"></soap:fault>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="GetByEmail">
+      <soap:operation soapAction="http://hl7.umcg.nl/GenericLayerStudyDefinitionService/GetByEmail" style="document"></soap:operation>
+      <wsdl:input name="MessageWithEmail">
+        <soap:body use="literal"></soap:body>
+      </wsdl:input>
+      <wsdl:output name="GetByEmailResponse">
+        <soap:body use="literal"></soap:body>
+      </wsdl:output>
+      <wsdl:fault name="FAULT">
+        <soap:fault name="FAULT" use="literal"></soap:fault>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="Revise">
+      <soap:operation soapAction="http://hl7.umcg.nl/GenericLayerStudyDefinitionService/Revise" style="document"></soap:operation>
+      <wsdl:input name="Revise">
+        <soap:body use="literal"></soap:body>
+      </wsdl:input>
+      <wsdl:output name="ReviseResponse">
+        <soap:body use="literal"></soap:body>
+      </wsdl:output>
+      <wsdl:fault name="FAULT">
+        <soap:fault name="FAULT" use="literal"></soap:fault>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="GetDraft">
+      <soap:operation soapAction="http://hl7.umcg.nl/GenericLayerStudyDefinitionService/GetDraft" style="document"></soap:operation>
+      <wsdl:input name="GetDraft">
+        <soap:body use="literal"></soap:body>
+      </wsdl:input>
+      <wsdl:output name="GetDraftResponse">
+        <soap:body use="literal"></soap:body>
+      </wsdl:output>
+      <wsdl:fault name="FAULT">
+        <soap:fault name="FAULT" use="literal"></soap:fault>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="GetSubmitted">
+      <soap:operation soapAction="http://hl7.umcg.nl/GenericLayerStudyDefinitionService/GetSubmitted" style="document"></soap:operation>
+      <wsdl:input name="GetSubmitted">
+        <soap:body use="literal"></soap:body>
+      </wsdl:input>
+      <wsdl:output name="GetSubmittedResponse">
+        <soap:body use="literal"></soap:body>
+      </wsdl:output>
+      <wsdl:fault name="FAULT">
+        <soap:fault name="FAULT" use="literal"></soap:fault>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="Approve">
+      <soap:operation soapAction="http://hl7.umcg.nl/GenericLayerStudyDefinitionService/Approve" style="document"></soap:operation>
+      <wsdl:input>
+        <soap:body use="literal"></soap:body>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"></soap:body>
+      </wsdl:output>
+      <wsdl:fault name="FAULT">
+        <soap:fault name="FAULT" use="literal"></soap:fault>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="GetApproved">
+      <soap:operation soapAction="http://hl7.umcg.nl/GenericLayerStudyDefinitionService/GetApproved" style="document"></soap:operation>
+      <wsdl:input name="GetApproved">
+        <soap:body use="literal"></soap:body>
+      </wsdl:input>
+      <wsdl:output name="GetApprovedResponse">
+        <soap:body use="literal"></soap:body>
+      </wsdl:output>
+      <wsdl:fault name="FAULT">
+        <soap:fault name="FAULT" use="literal"></soap:fault>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="Withdraw">
+      <soap:operation soapAction="http://hl7.umcg.nl/GenericLayerStudyDefinitionService/Withdraw" style="document"></soap:operation>
+      <wsdl:input>
+        <soap:body use="literal"></soap:body>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"></soap:body>
+      </wsdl:output>
+      <wsdl:fault name="FAULT">
+        <soap:fault name="FAULT" use="literal"></soap:fault>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="Suspend">
+      <soap:operation soapAction="http://hl7.umcg.nl/GenericLayerStudyDefinitionService/Suspend" style="document"></soap:operation>
+      <wsdl:input>
+        <soap:body use="literal"></soap:body>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"></soap:body>
+      </wsdl:output>
+      <wsdl:fault name="FAULT">
+        <soap:fault name="FAULT" use="literal"></soap:fault>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="Resume">
+      <soap:operation soapAction="http://hl7.umcg.nl/GenericLayerStudyDefinitionService/Resume" style="document"></soap:operation>
+      <wsdl:input>
+        <soap:body use="literal"></soap:body>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"></soap:body>
+      </wsdl:output>
+      <wsdl:fault name="FAULT">
+        <soap:fault name="FAULT" use="literal"></soap:fault>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="AddReview">
+      <soap:operation soapAction="http://hl7.umcg.nl/GenericLayerStudyDefinitionService/AddReview" style="document"></soap:operation>
+      <wsdl:input>
+        <soap:body use="literal"></soap:body>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"></soap:body>
+      </wsdl:output>
+      <wsdl:fault name="FAULT">
+        <soap:fault name="FAULT" use="literal"></soap:fault>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="GetById">
+      <soap:operation soapAction="http://hl7.umcg.nl/GenericLayerStudyDefinitionService/GetById" style="document"></soap:operation>
+      <wsdl:input name="GetById">
+        <soap:body use="literal"></soap:body>
+      </wsdl:input>
+      <wsdl:output name="GetByIdResponse">
+        <soap:body use="literal"></soap:body>
+      </wsdl:output>
+      <wsdl:fault name="FAULT">
+        <soap:fault name="FAULT" use="literal"></soap:fault>
+      </wsdl:fault>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="StudyDefinitionService">
+    <wsdl:port binding="tns:BasicHttpBinding_GenericLayerStudyDefinitionService" name="BasicHttpBinding_GenericLayerStudyDefinitionService">
+      <soap:address location="https://aps001.research.usor.nl/Umcg.Tcc.GenericLayer.StudyDefinitionService-1/StudyDefinitionService.svc"></soap:address>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>
