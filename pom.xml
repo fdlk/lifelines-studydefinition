@@ -4,7 +4,7 @@
 	<packaging>jar</packaging>
 	<artifactId>lifelines-studydefinition</artifactId>
 	<groupId>org.molgenis</groupId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>1.2.4</version>
 	<build>
 		<plugins>
 			<plugin>
